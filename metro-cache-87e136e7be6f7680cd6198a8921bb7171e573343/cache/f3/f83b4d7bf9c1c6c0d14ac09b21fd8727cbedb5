@@ -1,0 +1,76 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = undefined;
+
+  var _class, _temp;
+
+  var _react = _require(_dependencyMap[0]);
+
+  var React = babelHelpers.interopRequireWildcard(_react);
+
+  var _propTypes = _require(_dependencyMap[1]);
+
+  var _propTypes2 = babelHelpers.interopRequireDefault(_propTypes);
+
+  var _reactNative = _require(_dependencyMap[2]);
+
+  var LOLLIPOP = 21;
+  var TouchableItem = (_temp = _class = function (_React$Component) {
+    babelHelpers.inherits(TouchableItem, _React$Component);
+
+    function TouchableItem() {
+      babelHelpers.classCallCheck(this, TouchableItem);
+      return babelHelpers.possibleConstructorReturn(this, (TouchableItem.__proto__ || Object.getPrototypeOf(TouchableItem)).apply(this, arguments));
+    }
+
+    babelHelpers.createClass(TouchableItem, [{
+      key: "render",
+      value: function render() {
+        var _props = this.props,
+            style = _props.style,
+            pressOpacity = _props.pressOpacity,
+            pressColor = _props.pressColor,
+            borderless = _props.borderless,
+            rest = babelHelpers.objectWithoutProperties(_props, ["style", "pressOpacity", "pressColor", "borderless"]);
+
+        if (_reactNative.Platform.Version >= LOLLIPOP) {
+          return React.createElement(
+            _reactNative.TouchableNativeFeedback,
+            babelHelpers.extends({}, rest, {
+              background: _reactNative.TouchableNativeFeedback.Ripple(pressColor, borderless)
+            }),
+            React.createElement(
+              _reactNative.View,
+              {
+                style: style
+              },
+              React.Children.only(this.props.children)
+            )
+          );
+        } else {
+          return React.createElement(
+            _reactNative.TouchableOpacity,
+            babelHelpers.extends({}, rest, {
+              style: style,
+              activeOpacity: pressOpacity
+            }),
+            this.props.children
+          );
+        }
+      }
+    }]);
+    return TouchableItem;
+  }(React.Component), _class.propTypes = {
+    onPress: _propTypes2.default.func.isRequired,
+    delayPressIn: _propTypes2.default.number,
+    borderless: _propTypes2.default.bool,
+    pressColor: _propTypes2.default.string,
+    pressOpacity: _propTypes2.default.number,
+    children: _propTypes2.default.node.isRequired
+  }, _class.defaultProps = {
+    pressColor: 'rgba(255, 255, 255, .4)'
+  }, _temp);
+  exports.default = TouchableItem;
+});

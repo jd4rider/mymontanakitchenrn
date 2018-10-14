@@ -1,0 +1,25 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _reactNative = _require(_dependencyMap[0]);
+
+  var Pager = void 0;
+
+  switch ("ios") {
+    case 'android':
+      Pager = _require(_dependencyMap[1]).default;
+      break;
+
+    case 'ios':
+      Pager = _require(_dependencyMap[2]).default;
+      break;
+
+    default:
+      Pager = _require(_dependencyMap[3]).default;
+      break;
+  }
+
+  exports.default = Pager;
+});

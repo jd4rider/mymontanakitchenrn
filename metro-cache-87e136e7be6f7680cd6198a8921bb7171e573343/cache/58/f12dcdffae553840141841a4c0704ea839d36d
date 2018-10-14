@@ -1,0 +1,32 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  module.exports = {
+    get TabViewAnimated() {
+      return _require(_dependencyMap[0]).default;
+    },
+
+    get TabViewPagerPan() {
+      return _require(_dependencyMap[1]).default;
+    },
+
+    get TabViewPagerScroll() {
+      return _require(_dependencyMap[2]).default;
+    },
+
+    get TabViewPagerAndroid() {
+      return _require(_dependencyMap[3]).default;
+    },
+
+    get TabViewPagerExperimental() {
+      return _require(_dependencyMap[4]).default;
+    },
+
+    get TabBar() {
+      return _require(_dependencyMap[5]).default;
+    },
+
+    get SceneMap() {
+      return _require(_dependencyMap[6]).default;
+    }
+
+  };
+});

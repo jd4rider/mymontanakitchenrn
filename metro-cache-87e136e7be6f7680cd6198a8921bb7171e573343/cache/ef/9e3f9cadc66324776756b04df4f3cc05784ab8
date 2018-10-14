@@ -1,0 +1,33 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.MonoText = undefined;
+
+  var _react = _require(_dependencyMap[0]);
+
+  var _react2 = babelHelpers.interopRequireDefault(_react);
+
+  var _reactNative = _require(_dependencyMap[1]);
+
+  var MonoText = exports.MonoText = function (_React$Component) {
+    babelHelpers.inherits(MonoText, _React$Component);
+
+    function MonoText() {
+      babelHelpers.classCallCheck(this, MonoText);
+      return babelHelpers.possibleConstructorReturn(this, (MonoText.__proto__ || Object.getPrototypeOf(MonoText)).apply(this, arguments));
+    }
+
+    babelHelpers.createClass(MonoText, [{
+      key: "render",
+      value: function render() {
+        return _react2.default.createElement(_reactNative.Text, babelHelpers.extends({}, this.props, {
+          style: [this.props.style, {
+            fontFamily: 'space-mono'
+          }]
+        }));
+      }
+    }]);
+    return MonoText;
+  }(_react2.default.Component);
+});

@@ -1,0 +1,18 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.NavigationConsumer = exports.NavigationProvider = undefined;
+
+  var _createReactContext = _require(_dependencyMap[0]);
+
+  var _createReactContext2 = babelHelpers.interopRequireDefault(_createReactContext);
+
+  var NavigationContext = (0, _createReactContext2.default)();
+  var NavigationProvider = exports.NavigationProvider = NavigationContext.Provider;
+  var NavigationConsumer = exports.NavigationConsumer = NavigationContext.Consumer;
+  exports.default = {
+    NavigationProvider: NavigationProvider,
+    NavigationConsumer: NavigationConsumer
+  };
+});

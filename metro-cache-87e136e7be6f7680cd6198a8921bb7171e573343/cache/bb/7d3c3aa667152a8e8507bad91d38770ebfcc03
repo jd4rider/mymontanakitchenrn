@@ -1,0 +1,13 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  module.exports = _require(_dependencyMap[0]).registerAsset({
+    "__packager_asset": true,
+    "httpServerLocation": "/assets/assets/images",
+    "width": 324,
+    "height": 97,
+    "scales": [1],
+    "hash": "54a304c594fe61c40de6fc2bfb85dbde",
+    "name": "mymontkitchen",
+    "type": "png",
+    "fileHashes": ["54a304c594fe61c40de6fc2bfb85dbde"]
+  });
+});

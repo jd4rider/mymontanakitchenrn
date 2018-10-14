@@ -1,0 +1,262 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _class, _temp2;
+
+  var _react = _require(_dependencyMap[0]);
+
+  var React = babelHelpers.interopRequireWildcard(_react);
+
+  var _reactNative = _require(_dependencyMap[1]);
+
+  var _reactLifecyclesCompat = _require(_dependencyMap[2]);
+
+  var _reactNativeTabView = _require(_dependencyMap[3]);
+
+  var _createTabNavigator = _require(_dependencyMap[4]);
+
+  var _createTabNavigator2 = babelHelpers.interopRequireDefault(_createTabNavigator);
+
+  var _MaterialTopTabBar = _require(_dependencyMap[5]);
+
+  var _MaterialTopTabBar2 = babelHelpers.interopRequireDefault(_MaterialTopTabBar);
+
+  var _ResourceSavingScene = _require(_dependencyMap[6]);
+
+  var _ResourceSavingScene2 = babelHelpers.interopRequireDefault(_ResourceSavingScene);
+
+  var MaterialTabView = (_temp2 = _class = function (_React$PureComponent) {
+    babelHelpers.inherits(MaterialTabView, _React$PureComponent);
+
+    function MaterialTabView() {
+      var _ref;
+
+      var _temp, _this, _ret;
+
+      babelHelpers.classCallCheck(this, MaterialTabView);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = babelHelpers.possibleConstructorReturn(this, (_ref = MaterialTabView.__proto__ || Object.getPrototypeOf(MaterialTabView)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+        index: 0,
+        isSwiping: false,
+        loaded: [_this.props.navigation.state.index],
+        transitioningFromIndex: null
+      }, _this._renderIcon = function (_ref2) {
+        var focused = _ref2.focused,
+            route = _ref2.route,
+            tintColor = _ref2.tintColor;
+        var descriptors = _this.props.descriptors;
+        var descriptor = descriptors[route.key];
+        var options = descriptor.options;
+
+        if (options.tabBarIcon) {
+          return typeof options.tabBarIcon === 'function' ? options.tabBarIcon({
+            tintColor: tintColor,
+            focused: focused
+          }) : options.tabBarIcon;
+        }
+
+        return null;
+      }, _this._renderTabBar = function (props) {
+        var state = _this.props.navigation.state;
+        var route = state.routes[state.index];
+        var descriptors = _this.props.descriptors;
+        var descriptor = descriptors[route.key];
+        var options = descriptor.options;
+        var tabBarVisible = options.tabBarVisible == null ? true : options.tabBarVisible;
+        var _this$props = _this.props,
+            _this$props$tabBarCom = _this$props.tabBarComponent,
+            TabBarComponent = _this$props$tabBarCom === undefined ? _MaterialTopTabBar2.default : _this$props$tabBarCom,
+            tabBarPosition = _this$props.tabBarPosition,
+            tabBarOptions = _this$props.tabBarOptions;
+
+        if (TabBarComponent === null || !tabBarVisible) {
+          return null;
+        }
+
+        return React.createElement(TabBarComponent, babelHelpers.extends({}, tabBarOptions, props, {
+          tabBarPosition: tabBarPosition,
+          screenProps: _this.props.screenProps,
+          navigation: _this.props.navigation,
+          getLabelText: _this.props.getLabelText,
+          getAccessibilityLabel: _this.props.getAccessibilityLabel,
+          getTestID: _this.props.getTestID,
+          renderIcon: _this._renderIcon,
+          onTabPress: _this.props.onTabPress
+        }));
+      }, _this._renderPanPager = function (props) {
+        return React.createElement(_reactNativeTabView.PagerPan, props);
+      }, _this._handleAnimationEnd = function () {
+        var lazy = _this.props.lazy;
+
+        if (lazy) {
+          _this.setState({
+            transitioningFromIndex: null,
+            isSwiping: false
+          });
+        }
+      }, _this._handleSwipeStart = function () {
+        var _this$props2 = _this.props,
+            navigation = _this$props2.navigation,
+            lazy = _this$props2.lazy;
+
+        if (lazy) {
+          _this.setState({
+            isSwiping: true,
+            loaded: [].concat(babelHelpers.toConsumableArray(new Set([].concat(babelHelpers.toConsumableArray(_this.state.loaded), [Math.max(navigation.state.index - 1, 0), Math.min(navigation.state.index + 1, navigation.state.routes.length - 1)]))))
+          });
+        }
+      }, _this._handleIndexChange = function (index) {
+        var _this$props3 = _this.props,
+            animationEnabled = _this$props3.animationEnabled,
+            navigation = _this$props3.navigation,
+            onIndexChange = _this$props3.onIndexChange,
+            lazy = _this$props3.lazy;
+
+        if (lazy && animationEnabled) {
+          _this.setState({
+            transitioningFromIndex: navigation.state.index || 0
+          });
+        }
+
+        onIndexChange(index);
+      }, _this._mustBeVisible = function (_ref3) {
+        var index = _ref3.index,
+            focused = _ref3.focused;
+        var _this$props4 = _this.props,
+            animationEnabled = _this$props4.animationEnabled,
+            navigation = _this$props4.navigation;
+        var _this$state = _this.state,
+            isSwiping = _this$state.isSwiping,
+            transitioningFromIndex = _this$state.transitioningFromIndex;
+
+        if (isSwiping) {
+          var isSibling = navigation.state.index === index - 1 || navigation.state.index === index + 1;
+
+          if (isSibling) {
+            return true;
+          }
+        }
+
+        if (animationEnabled && transitioningFromIndex === index) {
+          return true;
+        }
+
+        return focused;
+      }, _this._renderScene = function (_ref4) {
+        var route = _ref4.route;
+        var _this$props5 = _this.props,
+            renderScene = _this$props5.renderScene,
+            descriptors = _this$props5.descriptors,
+            lazy = _this$props5.lazy,
+            optimizationsEnabled = _this$props5.optimizationsEnabled;
+
+        if (lazy) {
+          var _loaded = _this.state.loaded;
+          var routes = _this.props.navigation.state.routes;
+
+          var _index = routes.findIndex(function (_ref5) {
+            var key = _ref5.key;
+            return key === route.key;
+          });
+
+          var navigation = descriptors[route.key].navigation;
+
+          var mustBeVisible = _this._mustBeVisible({
+            index: _index,
+            focused: navigation.isFocused()
+          });
+
+          if (!_loaded.includes(_index) && !mustBeVisible) {
+            return React.createElement(_reactNative.View, null);
+          }
+
+          if (optimizationsEnabled) {
+            return React.createElement(
+              _ResourceSavingScene2.default,
+              {
+                isVisible: mustBeVisible
+              },
+              renderScene({
+                route: route
+              })
+            );
+          }
+        }
+
+        return renderScene({
+          route: route
+        });
+      }, _temp), babelHelpers.possibleConstructorReturn(_this, _ret);
+    }
+
+    babelHelpers.createClass(MaterialTabView, [{
+      key: "render",
+      value: function render() {
+        var _props = this.props,
+            navigation = _props.navigation,
+            animationEnabled = _props.animationEnabled,
+            renderScene = _props.renderScene,
+            onIndexChange = _props.onIndexChange,
+            rest = babelHelpers.objectWithoutProperties(_props, ["navigation", "animationEnabled", "renderScene", "onIndexChange"]);
+        var renderPager = void 0;
+        var state = this.props.navigation.state;
+        var route = state.routes[state.index];
+        var descriptors = this.props.descriptors;
+        var descriptor = descriptors[route.key];
+        var options = descriptor.options;
+        var swipeEnabled = options.swipeEnabled == null ? this.props.swipeEnabled : options.swipeEnabled;
+
+        if (typeof swipeEnabled === 'function') {
+          swipeEnabled = swipeEnabled(state);
+        }
+
+        if (animationEnabled === false && swipeEnabled === false) {
+          renderPager = this._renderPanPager;
+        }
+
+        return React.createElement(_reactNativeTabView.TabView, babelHelpers.extends({}, rest, {
+          navigationState: navigation.state,
+          animationEnabled: animationEnabled,
+          swipeEnabled: swipeEnabled,
+          onAnimationEnd: this._handleAnimationEnd,
+          onIndexChange: this._handleIndexChange,
+          onSwipeStart: this._handleSwipeStart,
+          renderPager: renderPager,
+          renderTabBar: this._renderTabBar,
+          renderScene: this._renderScene
+        }));
+      }
+    }], [{
+      key: "getDerivedStateFromProps",
+      value: function getDerivedStateFromProps(nextProps, prevState) {
+        var index = nextProps.navigation.state.index;
+
+        if (prevState.index === index) {
+          return null;
+        }
+
+        return {
+          loaded: prevState.loaded.includes(index) ? prevState.loaded : [].concat(babelHelpers.toConsumableArray(prevState.loaded), [index]),
+          index: index
+        };
+      }
+    }]);
+    return MaterialTabView;
+  }(React.PureComponent), _class.defaultProps = {
+    initialLayout: {
+      width: 1,
+      height: 0
+    },
+    animationEnabled: true,
+    lazy: false,
+    optimizationsEnabled: false
+  }, _temp2);
+  (0, _reactLifecyclesCompat.polyfill)(MaterialTabView);
+  exports.default = (0, _createTabNavigator2.default)(MaterialTabView);
+});

@@ -1,0 +1,28 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  module.exports = {
+    get createDrawerNavigator() {
+      return _require(_dependencyMap[0]).default;
+    },
+
+    get DrawerRouter() {
+      return _require(_dependencyMap[1]).default;
+    },
+
+    get DrawerActions() {
+      return _require(_dependencyMap[2]).default;
+    },
+
+    get DrawerNavigatorItems() {
+      return _require(_dependencyMap[3]).default;
+    },
+
+    get DrawerSidebar() {
+      return _require(_dependencyMap[4]).default;
+    },
+
+    get DrawerView() {
+      return _require(_dependencyMap[5]).default;
+    }
+
+  };
+});

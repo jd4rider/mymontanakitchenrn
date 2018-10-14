@@ -1,0 +1,119 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react2 = _require(_dependencyMap[0], "react");
+
+  var _react3 = _interopRequireDefault(_react2);
+
+  var _index = _require(_dependencyMap[1], "./../react-transform-hmr/lib/index.js");
+
+  var _index2 = _interopRequireDefault(_index);
+
+  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+  var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+  var _class, _temp2;
+
+  var _propTypes = _require(_dependencyMap[2], "prop-types");
+
+  var _propTypes2 = _interopRequireDefault(_propTypes);
+
+  var _tenaciousFetch = _require(_dependencyMap[3], "tenacious-fetch");
+
+  var _tenaciousFetch2 = _interopRequireDefault(_tenaciousFetch);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _components = {
+    Fetch: {
+      displayName: "Fetch"
+    }
+  };
+
+  var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+    filename: "/home/jd4rider/mymontanakitchenrn/node_modules/react-native-fetch/index.js",
+    components: _components,
+    locals: [module],
+    imports: [_react3.default]
+  });
+
+  function _wrapComponent(id) {
+    return function (Component) {
+      return _reactTransformHmrLibIndexJs2(Component, id);
+    };
+  }
+
+  var noop = function noop() {};
+
+  var Fetch = _wrapComponent("Fetch")((_temp2 = _class = function (_Component) {
+    _inherits(Fetch, _Component);
+
+    function Fetch() {
+      var _ref;
+
+      var _temp, _this, _ret;
+
+      _classCallCheck(this, Fetch);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Fetch.__proto__ || Object.getPrototypeOf(Fetch)).call.apply(_ref, [this].concat(args))), _this), _this.componentDidMount = function () {
+        if (fetch) {
+          _this.handleReqeuest();
+        } else {
+          throw new Error('fetch API required to perform request');
+        }
+      }, _this.handleReqeuest = function () {
+        var _this$props = _this.props,
+            url = _this$props.url,
+            onResponse = _this$props.onResponse,
+            onError = _this$props.onError,
+            propConfig = _objectWithoutProperties(_this$props, ["url", "onResponse", "onError"]);
+
+        var defaultConfig = _extends({
+          fetcher: fetch
+        }, propConfig);
+
+        return (0, _tenaciousFetch2.default)(url, defaultConfig).then(onResponse).catch(onError);
+      }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(Fetch, [{
+      key: "render",
+      value: function render() {
+        return null;
+      }
+    }]);
+
+    return Fetch;
+  }(_react2.Component), _class.propTypes = {
+    url: _propTypes2.default.string.isRequired,
+    onResponse: _propTypes2.default.func,
+    onError: _propTypes2.default.func,
+    method: _propTypes2.default.oneOf(['GET', 'POST', 'PUT', 'DELETE', 'PATCH']),
+    body: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.string]),
+    headers: _propTypes2.default.object,
+    credentials: _propTypes2.default.string,
+    retries: _propTypes2.default.number,
+    timeout: _propTypes2.default.number
+  }, _class.defaultProps = {
+    method: 'GET',
+    onResponse: noop,
+    onError: noop
+  }, _temp2));
+
+  exports.default = Fetch;
+});

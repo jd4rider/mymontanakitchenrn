@@ -1,0 +1,74 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react = _require(_dependencyMap[0]);
+
+  var _react2 = babelHelpers.interopRequireDefault(_react);
+
+  var _reactNative = _require(_dependencyMap[1]);
+
+  var _reactNavigation = _require(_dependencyMap[2]);
+
+  var _TabBarIcon = _require(_dependencyMap[3]);
+
+  var _TabBarIcon2 = babelHelpers.interopRequireDefault(_TabBarIcon);
+
+  var _HomeScreen = _require(_dependencyMap[4]);
+
+  var _HomeScreen2 = babelHelpers.interopRequireDefault(_HomeScreen);
+
+  var _LinksScreen = _require(_dependencyMap[5]);
+
+  var _LinksScreen2 = babelHelpers.interopRequireDefault(_LinksScreen);
+
+  var _SettingsScreen = _require(_dependencyMap[6]);
+
+  var _SettingsScreen2 = babelHelpers.interopRequireDefault(_SettingsScreen);
+
+  var HomeStack = (0, _reactNavigation.createStackNavigator)({
+    Home: _HomeScreen2.default
+  });
+  HomeStack.navigationOptions = {
+    tabBarLabel: 'Home',
+    tabBarIcon: function tabBarIcon(_ref) {
+      var focused = _ref.focused;
+      return _react2.default.createElement(_TabBarIcon2.default, {
+        focused: focused,
+        name: 'md-information-circle'
+      });
+    }
+  };
+  var LinksStack = (0, _reactNavigation.createStackNavigator)({
+    Links: _LinksScreen2.default
+  });
+  LinksStack.navigationOptions = {
+    tabBarLabel: 'Links',
+    tabBarIcon: function tabBarIcon(_ref2) {
+      var focused = _ref2.focused;
+      return _react2.default.createElement(_TabBarIcon2.default, {
+        focused: focused,
+        name: 'md-link'
+      });
+    }
+  };
+  var SettingsStack = (0, _reactNavigation.createStackNavigator)({
+    Settings: _SettingsScreen2.default
+  });
+  SettingsStack.navigationOptions = {
+    tabBarLabel: 'Settings',
+    tabBarIcon: function tabBarIcon(_ref3) {
+      var focused = _ref3.focused;
+      return _react2.default.createElement(_TabBarIcon2.default, {
+        focused: focused,
+        name: 'md-options'
+      });
+    }
+  };
+  exports.default = (0, _reactNavigation.createBottomTabNavigator)({
+    HomeStack: HomeStack,
+    LinksStack: LinksStack,
+    SettingsStack: SettingsStack
+  });
+});

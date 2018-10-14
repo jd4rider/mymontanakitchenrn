@@ -2,11 +2,20 @@ import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
+import Fetch from 'react-native-fetch';
 
 export default class App extends React.Component {
+
   state = {
     isLoadingComplete: false,
   };
+
+  componenDidMount = () => {
+    fetch('https://mymontanakitchen.com/wp-json/wp/v2/posts')  
+      .then(function(response) {
+        console.log(response.json());
+    })
+  }
 
   render() {
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
@@ -21,6 +30,7 @@ export default class App extends React.Component {
       return (
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          
           <AppNavigator />
         </View>
       );

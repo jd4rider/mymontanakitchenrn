@@ -1,0 +1,34 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = undefined;
+
+  var _class, _temp;
+
+  var _react = _require(_dependencyMap[0]);
+
+  var _react2 = babelHelpers.interopRequireDefault(_react);
+
+  var _samples = _require(_dependencyMap[1]);
+
+  var SettingsScreen = (_temp = _class = function (_React$Component) {
+    babelHelpers.inherits(SettingsScreen, _React$Component);
+
+    function SettingsScreen() {
+      babelHelpers.classCallCheck(this, SettingsScreen);
+      return babelHelpers.possibleConstructorReturn(this, (SettingsScreen.__proto__ || Object.getPrototypeOf(SettingsScreen)).apply(this, arguments));
+    }
+
+    babelHelpers.createClass(SettingsScreen, [{
+      key: "render",
+      value: function render() {
+        return _react2.default.createElement(_samples.ExpoConfigView, null);
+      }
+    }]);
+    return SettingsScreen;
+  }(_react2.default.Component), _class.navigationOptions = {
+    title: 'app.json'
+  }, _temp);
+  exports.default = SettingsScreen;
+});

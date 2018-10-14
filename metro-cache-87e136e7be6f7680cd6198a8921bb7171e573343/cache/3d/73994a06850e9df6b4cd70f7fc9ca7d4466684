@@ -1,0 +1,79 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = undefined;
+
+  var _react = _require(_dependencyMap[0]);
+
+  var React = babelHelpers.interopRequireWildcard(_react);
+
+  var _reactNative = _require(_dependencyMap[1]);
+
+  var _reactNativeScreens = _require(_dependencyMap[2]);
+
+  var FAR_FAR_AWAY = 3000;
+
+  var ResourceSavingScene = function (_React$Component) {
+    babelHelpers.inherits(ResourceSavingScene, _React$Component);
+
+    function ResourceSavingScene() {
+      babelHelpers.classCallCheck(this, ResourceSavingScene);
+      return babelHelpers.possibleConstructorReturn(this, (ResourceSavingScene.__proto__ || Object.getPrototypeOf(ResourceSavingScene)).apply(this, arguments));
+    }
+
+    babelHelpers.createClass(ResourceSavingScene, [{
+      key: "render",
+      value: function render() {
+        if (_reactNativeScreens.screensEnabled && (0, _reactNativeScreens.screensEnabled)()) {
+          var _props = this.props,
+              _isVisible = _props.isVisible,
+              _rest = babelHelpers.objectWithoutProperties(_props, ["isVisible"]);
+
+          return React.createElement(_reactNativeScreens.Screen, babelHelpers.extends({
+            active: _isVisible ? 1 : 0
+          }, _rest));
+        }
+
+        var _props2 = this.props,
+            isVisible = _props2.isVisible,
+            children = _props2.children,
+            style = _props2.style,
+            rest = babelHelpers.objectWithoutProperties(_props2, ["isVisible", "children", "style"]);
+        return React.createElement(
+          _reactNative.View,
+          babelHelpers.extends({
+            style: [styles.container, style],
+            collapsable: false,
+            removeClippedSubviews: true,
+            pointerEvents: isVisible ? 'auto' : 'none'
+          }, rest),
+          React.createElement(
+            _reactNative.View,
+            {
+              style: isVisible ? styles.attached : styles.detached
+            },
+            children
+          )
+        );
+      }
+    }]);
+    return ResourceSavingScene;
+  }(React.Component);
+
+  exports.default = ResourceSavingScene;
+
+  var styles = _reactNative.StyleSheet.create({
+    container: {
+      flex: 1,
+      overflow: 'hidden'
+    },
+    attached: {
+      flex: 1
+    },
+    detached: {
+      flex: 1,
+      top: FAR_FAR_AWAY
+    }
+  });
+});
