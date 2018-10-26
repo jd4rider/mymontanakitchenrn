@@ -7,7 +7,9 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ImageBackground
 } from 'react-native';
+import { Button, Header } from 'react-native-elements'
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
@@ -19,7 +21,19 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      // <View style={styles.container}>
+      <ImageBackground
+            source={require('../assets/images/mymontpic.png')}
+            style={{ width: '100%', height: '100%' }}
+          >
+          <Header 
+              statusBarProps={{ barStyle: 'light-content' }}
+              backgroundColor="#9E364A"
+              leftComponent={{ icon: 'menu', color: '#fff' }}
+              centerComponent={{ text: 'My Montana Kitchen', style: { color: '#fff' } }}
+              outerContainerStyles={{ height: 90 }}
+              rightComponent={{ icon: 'settings', color: '#fff' }}
+            />
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
             <Image
@@ -32,7 +46,25 @@ export default class HomeScreen extends React.Component {
             />
           </View>
 
-          <View style={styles.getStartedContainer}>
+            <View style={styles.buttoncont}>
+            <Button 
+              raised
+              title="Recipes"
+              backgroundColor="#9E364A"
+              buttonStyle={styles.button}
+              rounded
+            />
+            <Text>{"     "}</Text>
+            <Button
+              raised
+              title="Videos"
+              backgroundColor="#82665C"
+              buttonStyle={styles.button}
+              rounded
+            />
+            </View>
+
+          {/* <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
 
             <Text style={styles.getStartedText}>Get started by opening</Text>
@@ -50,17 +82,18 @@ export default class HomeScreen extends React.Component {
             <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
               <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
             </TouchableOpacity>
-          </View>
+          </View> */}
         </ScrollView>
 
-        <View style={styles.tabBarInfoContainer}>
+        {/* <View style={styles.tabBarInfoContainer}>
           <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
 
           <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
             <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
-      </View>
+          </View> 
+        </View>*/}
+        </ImageBackground>
+      // </View>
     );
   }
 
@@ -101,7 +134,13 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    //backgroundColor: '#fff',
+    //alignItems: 'center',
+    //justifyContent: 'center',
+  },
+  buttoncont:{
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   developmentModeText: {
     marginBottom: 20,
@@ -115,6 +154,7 @@ const styles = StyleSheet.create({
   },
   welcomeContainer: {
     alignItems: 'center',
+    justifyContent: 'center',
     marginTop: 10,
     marginBottom: 20,
   },
@@ -171,6 +211,7 @@ const styles = StyleSheet.create({
     color: 'rgba(96,100,109, 1)',
     textAlign: 'center',
   },
+  
   navigationFilename: {
     marginTop: 5,
   },
@@ -185,4 +226,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
+  button: {
+    width: 290,
+    height: 60,
+  }
 });

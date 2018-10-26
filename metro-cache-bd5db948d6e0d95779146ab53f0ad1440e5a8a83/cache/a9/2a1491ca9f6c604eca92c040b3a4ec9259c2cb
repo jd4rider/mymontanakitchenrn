@@ -1,0 +1,81 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _propTypes = _require(_dependencyMap[0]);
+
+  var _propTypes2 = babelHelpers.interopRequireDefault(_propTypes);
+
+  var _react = _require(_dependencyMap[1]);
+
+  var _react2 = babelHelpers.interopRequireDefault(_react);
+
+  var _reactNative = _require(_dependencyMap[2]);
+
+  var _colors = _require(_dependencyMap[3]);
+
+  var _colors2 = babelHelpers.interopRequireDefault(_colors);
+
+  var _fonts = _require(_dependencyMap[4]);
+
+  var _fonts2 = babelHelpers.interopRequireDefault(_fonts);
+
+  var _Text = _require(_dependencyMap[5]);
+
+  var _Text2 = babelHelpers.interopRequireDefault(_Text);
+
+  var _normalizeText = _require(_dependencyMap[6]);
+
+  var _normalizeText2 = babelHelpers.interopRequireDefault(_normalizeText);
+
+  var _ViewPropTypes = _require(_dependencyMap[7]);
+
+  var _ViewPropTypes2 = babelHelpers.interopRequireDefault(_ViewPropTypes);
+
+  var FormLabel = function FormLabel(props) {
+    var containerStyle = props.containerStyle,
+        labelStyle = props.labelStyle,
+        children = props.children,
+        fontFamily = props.fontFamily,
+        attributes = babelHelpers.objectWithoutProperties(props, ["containerStyle", "labelStyle", "children", "fontFamily"]);
+    return _react2.default.createElement(
+      _reactNative.View,
+      babelHelpers.extends({}, attributes, {
+        style: [styles.container, containerStyle && containerStyle]
+      }),
+      _react2.default.createElement(
+        _Text2.default,
+        {
+          style: [styles.label, labelStyle && labelStyle, fontFamily && {
+            fontFamily: fontFamily
+          }]
+        },
+        children
+      )
+    );
+  };
+
+  FormLabel.propTypes = {
+    containerStyle: _ViewPropTypes2.default.style,
+    labelStyle: _reactNative.Text.propTypes.style,
+    children: _propTypes2.default.any,
+    fontFamily: _propTypes2.default.string
+  };
+
+  var styles = _reactNative.StyleSheet.create({
+    container: {},
+    label: babelHelpers.extends({
+      marginLeft: 20,
+      marginRight: 20,
+      marginTop: 15,
+      marginBottom: 1,
+      color: _colors2.default.grey3,
+      fontSize: (0, _normalizeText2.default)(12)
+    }, {
+      fontWeight: 'bold'
+    })
+  });
+
+  exports.default = FormLabel;
+});

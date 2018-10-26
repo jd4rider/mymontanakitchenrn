@@ -1,0 +1,85 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react = _require(_dependencyMap[0]);
+
+  var _react2 = babelHelpers.interopRequireDefault(_react);
+
+  var _reactNative = _require(_dependencyMap[1]);
+
+  var _reactNativeScreens = _require(_dependencyMap[2]);
+
+  var _createPointerEventsContainer = _require(_dependencyMap[3]);
+
+  var _createPointerEventsContainer2 = babelHelpers.interopRequireDefault(_createPointerEventsContainer);
+
+  var EPS = 1e-5;
+
+  function getAccessibilityProps(isActive) {
+    {
+      return {
+        accessibilityElementsHidden: !isActive
+      };
+    }
+  }
+
+  var Card = function (_React$Component) {
+    babelHelpers.inherits(Card, _React$Component);
+
+    function Card() {
+      babelHelpers.classCallCheck(this, Card);
+      return babelHelpers.possibleConstructorReturn(this, (Card.__proto__ || Object.getPrototypeOf(Card)).apply(this, arguments));
+    }
+
+    babelHelpers.createClass(Card, [{
+      key: "render",
+      value: function render() {
+        var _props = this.props,
+            children = _props.children,
+            pointerEvents = _props.pointerEvents,
+            style = _props.style,
+            position = _props.position,
+            transparent = _props.transparent,
+            _props$scene = _props.scene,
+            index = _props$scene.index,
+            isActive = _props$scene.isActive;
+        var active = transparent || isActive ? 1 : position.interpolate({
+          inputRange: [index, index + 1 - EPS, index + 1],
+          outputRange: [1, 1, 0],
+          extrapolate: 'clamp'
+        });
+        return _react2.default.createElement(
+          _reactNativeScreens.Screen,
+          babelHelpers.extends({
+            pointerEvents: pointerEvents,
+            onComponentRef: this.props.onComponentRef,
+            style: [transparent ? styles.transparent : styles.main, style],
+            active: active
+          }, getAccessibilityProps(isActive)),
+          children
+        );
+      }
+    }]);
+    return Card;
+  }(_react2.default.Component);
+
+  var styles = _reactNative.StyleSheet.create({
+    main: babelHelpers.extends({}, _reactNative.StyleSheet.absoluteFillObject, {
+      backgroundColor: '#E9E9EF',
+      shadowColor: 'black',
+      shadowOffset: {
+        width: 0,
+        height: 0
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 5
+    }),
+    transparent: babelHelpers.extends({}, _reactNative.StyleSheet.absoluteFillObject, {
+      backgroundColor: 'transparent'
+    })
+  });
+
+  exports.default = (0, _createPointerEventsContainer2.default)(Card);
+});

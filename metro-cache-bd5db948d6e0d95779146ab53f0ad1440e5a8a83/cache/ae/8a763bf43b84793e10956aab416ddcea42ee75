@@ -1,0 +1,24 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  module.exports = {
+    get createBottomTabNavigator() {
+      return _require(_dependencyMap[0]).default;
+    },
+
+    get createMaterialTopTabNavigator() {
+      return _require(_dependencyMap[1]).default;
+    },
+
+    get BottomTabBar() {
+      return _require(_dependencyMap[2]).default;
+    },
+
+    get MaterialTopTabBar() {
+      return _require(_dependencyMap[3]).default;
+    },
+
+    get createTabNavigator() {
+      return _require(_dependencyMap[4]).default;
+    }
+
+  };
+});

@@ -1,0 +1,42 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = undefined;
+
+  var _react = _require(_dependencyMap[0]);
+
+  var _react2 = babelHelpers.interopRequireDefault(_react);
+
+  var _expo = _require(_dependencyMap[1]);
+
+  var _Colors = _require(_dependencyMap[2]);
+
+  var _Colors2 = babelHelpers.interopRequireDefault(_Colors);
+
+  var TabBarIcon = function (_React$Component) {
+    babelHelpers.inherits(TabBarIcon, _React$Component);
+
+    function TabBarIcon() {
+      babelHelpers.classCallCheck(this, TabBarIcon);
+      return babelHelpers.possibleConstructorReturn(this, (TabBarIcon.__proto__ || Object.getPrototypeOf(TabBarIcon)).apply(this, arguments));
+    }
+
+    babelHelpers.createClass(TabBarIcon, [{
+      key: "render",
+      value: function render() {
+        return _react2.default.createElement(_expo.Icon.Ionicons, {
+          name: this.props.name,
+          size: 26,
+          style: {
+            marginBottom: -3
+          },
+          color: this.props.focused ? _Colors2.default.tabIconSelected : _Colors2.default.tabIconDefault
+        });
+      }
+    }]);
+    return TabBarIcon;
+  }(_react2.default.Component);
+
+  exports.default = TabBarIcon;
+});

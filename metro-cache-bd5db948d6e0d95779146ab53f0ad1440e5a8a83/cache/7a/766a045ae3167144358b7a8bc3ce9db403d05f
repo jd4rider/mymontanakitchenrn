@@ -1,0 +1,26 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _createNavigator = _require(_dependencyMap[0]);
+
+  var _createNavigator2 = babelHelpers.interopRequireDefault(_createNavigator);
+
+  var _SwitchRouter = _require(_dependencyMap[1]);
+
+  var _SwitchRouter2 = babelHelpers.interopRequireDefault(_SwitchRouter);
+
+  var _SwitchView = _require(_dependencyMap[2]);
+
+  var _SwitchView2 = babelHelpers.interopRequireDefault(_SwitchView);
+
+  function createSwitchNavigator(routeConfigMap) {
+    var switchConfig = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var router = (0, _SwitchRouter2.default)(routeConfigMap, switchConfig);
+    var Navigator = (0, _createNavigator2.default)(_SwitchView2.default, router, switchConfig);
+    return Navigator;
+  }
+
+  exports.default = createSwitchNavigator;
+});

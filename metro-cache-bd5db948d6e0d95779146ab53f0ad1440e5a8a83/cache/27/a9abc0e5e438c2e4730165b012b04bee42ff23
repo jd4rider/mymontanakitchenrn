@@ -1,0 +1,13 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+	module.exports = _require(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
+		"__packager_asset": true,
+		"httpServerLocation": "/assets/assets/images",
+		"width": 352,
+		"height": 574,
+		"scales": [1],
+		"hash": "c73644dfc8129a84bcf1ddedf647a757",
+		"name": "mymontpic",
+		"type": "png",
+		"fileHashes": ["c73644dfc8129a84bcf1ddedf647a757"]
+	});
+});

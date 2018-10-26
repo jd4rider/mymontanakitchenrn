@@ -1,0 +1,39 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react = _require(_dependencyMap[0]);
+
+  var _react2 = babelHelpers.interopRequireDefault(_react);
+
+  var _reactNative = _require(_dependencyMap[1]);
+
+  var _colors = _require(_dependencyMap[2]);
+
+  var _colors2 = babelHelpers.interopRequireDefault(_colors);
+
+  var _ViewPropTypes = _require(_dependencyMap[3]);
+
+  var _ViewPropTypes2 = babelHelpers.interopRequireDefault(_ViewPropTypes);
+
+  var styles = {};
+
+  var Divider = function Divider(_ref) {
+    var style = _ref.style;
+    return _react2.default.createElement(_reactNative.View, {
+      style: [styles.container, style && style]
+    });
+  };
+
+  Divider.propTypes = {
+    style: _ViewPropTypes2.default.style
+  };
+  styles = _reactNative.StyleSheet.create({
+    container: {
+      height: 1,
+      backgroundColor: _colors2.default.grey5
+    }
+  });
+  exports.default = Divider;
+});

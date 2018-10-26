@@ -1,0 +1,19 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react = _require(_dependencyMap[0]);
+
+  var _react2 = babelHelpers.interopRequireDefault(_react);
+
+  var _reactNavigation = _require(_dependencyMap[1]);
+
+  var _MainTabNavigator = _require(_dependencyMap[2]);
+
+  var _MainTabNavigator2 = babelHelpers.interopRequireDefault(_MainTabNavigator);
+
+  exports.default = (0, _reactNavigation.createSwitchNavigator)({
+    Main: _MainTabNavigator2.default
+  });
+});

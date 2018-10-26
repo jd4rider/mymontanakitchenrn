@@ -1,0 +1,88 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react = _require(_dependencyMap[0]);
+
+  var _react2 = babelHelpers.interopRequireDefault(_react);
+
+  var _reactLifecyclesCompat = _require(_dependencyMap[1]);
+
+  function createNavigator(NavigatorView, router, navigationConfig) {
+    var _class, _temp2;
+
+    var Navigator = (_temp2 = _class = function (_React$Component) {
+      babelHelpers.inherits(Navigator, _React$Component);
+
+      function Navigator() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        babelHelpers.classCallCheck(this, Navigator);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = babelHelpers.possibleConstructorReturn(this, (_ref = Navigator.__proto__ || Object.getPrototypeOf(Navigator)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+          descriptors: {},
+          screenProps: _this.props.screenProps
+        }, _temp), babelHelpers.possibleConstructorReturn(_this, _ret);
+      }
+
+      babelHelpers.createClass(Navigator, [{
+        key: "render",
+        value: function render() {
+          return _react2.default.createElement(NavigatorView, babelHelpers.extends({}, this.props, {
+            screenProps: this.state.screenProps,
+            navigation: this.props.navigation,
+            navigationConfig: navigationConfig,
+            descriptors: this.state.descriptors
+          }));
+        }
+      }], [{
+        key: "getDerivedStateFromProps",
+        value: function getDerivedStateFromProps(nextProps, prevState) {
+          var prevDescriptors = prevState.descriptors;
+          var navigation = nextProps.navigation,
+              screenProps = nextProps.screenProps;
+          var state = navigation.state;
+          var routes = state.routes;
+
+          if (typeof routes === 'undefined') {
+            throw new TypeError('No "routes" found in navigation state. Did you try to pass the navigation prop of a React component to a Navigator child? See https://reactnavigation.org/docs/en/custom-navigators.html#navigator-navigation-prop');
+          }
+
+          var descriptors = {};
+          routes.forEach(function (route) {
+            if (prevDescriptors && prevDescriptors[route.key] && route === prevDescriptors[route.key].state && screenProps === prevState.screenProps) {
+              descriptors[route.key] = prevDescriptors[route.key];
+              return;
+            }
+
+            var getComponent = router.getComponentForRouteName.bind(null, route.routeName);
+            var childNavigation = navigation.getChildNavigation(route.key);
+            var options = router.getScreenOptions(childNavigation, screenProps);
+            descriptors[route.key] = {
+              key: route.key,
+              getComponent: getComponent,
+              options: options,
+              state: route,
+              navigation: childNavigation
+            };
+          });
+          return {
+            descriptors: descriptors,
+            screenProps: screenProps
+          };
+        }
+      }]);
+      return Navigator;
+    }(_react2.default.Component), _class.router = router, _class.navigationOptions = null, _temp2);
+    return (0, _reactLifecyclesCompat.polyfill)(Navigator);
+  }
+
+  exports.default = createNavigator;
+});

@@ -1,0 +1,87 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react = _require(_dependencyMap[0]);
+
+  var _react2 = babelHelpers.interopRequireDefault(_react);
+
+  var _withNavigation = _require(_dependencyMap[1]);
+
+  var _withNavigation2 = babelHelpers.interopRequireDefault(_withNavigation);
+
+  var EventNameToPropName = {
+    willFocus: 'onWillFocus',
+    didFocus: 'onDidFocus',
+    willBlur: 'onWillBlur',
+    didBlur: 'onDidBlur'
+  };
+  var EventNames = Object.keys(EventNameToPropName);
+
+  var NavigationEvents = function (_React$Component) {
+    babelHelpers.inherits(NavigationEvents, _React$Component);
+
+    function NavigationEvents() {
+      var _ref;
+
+      var _temp, _this, _ret;
+
+      babelHelpers.classCallCheck(this, NavigationEvents);
+
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      return _ret = (_temp = (_this = babelHelpers.possibleConstructorReturn(this, (_ref = NavigationEvents.__proto__ || Object.getPrototypeOf(NavigationEvents)).call.apply(_ref, [this].concat(args))), _this), _this.addListener = function (eventName) {
+        var listener = _this.props[EventNameToPropName[eventName]];
+
+        if (listener) {
+          _this.subscriptions[eventName] = _this.props.navigation.addListener(eventName, listener);
+        }
+      }, _this.removeListener = function (eventName) {
+        if (_this.subscriptions[eventName]) {
+          _this.subscriptions[eventName].remove();
+
+          _this.subscriptions[eventName] = undefined;
+        }
+      }, _temp), babelHelpers.possibleConstructorReturn(_this, _ret);
+    }
+
+    babelHelpers.createClass(NavigationEvents, [{
+      key: "componentDidMount",
+      value: function componentDidMount() {
+        this.subscriptions = {};
+        EventNames.forEach(this.addListener);
+      }
+    }, {
+      key: "componentDidUpdate",
+      value: function componentDidUpdate(prevProps) {
+        var _this2 = this;
+
+        EventNames.forEach(function (eventName) {
+          var listenerHasChanged = _this2.props[EventNameToPropName[eventName]] !== prevProps[EventNameToPropName[eventName]];
+
+          if (listenerHasChanged) {
+            _this2.removeListener(eventName);
+
+            _this2.addListener(eventName);
+          }
+        });
+      }
+    }, {
+      key: "componentWillUnmount",
+      value: function componentWillUnmount() {
+        EventNames.forEach(this.removeListener);
+      }
+    }, {
+      key: "render",
+      value: function render() {
+        return null;
+      }
+    }]);
+    return NavigationEvents;
+  }(_react2.default.Component);
+
+  exports.default = (0, _withNavigation2.default)(NavigationEvents);
+});

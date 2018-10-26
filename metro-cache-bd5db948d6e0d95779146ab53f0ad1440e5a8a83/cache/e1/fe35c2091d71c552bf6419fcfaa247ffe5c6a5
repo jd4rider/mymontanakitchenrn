@@ -1,0 +1,60 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  module.exports = {
+    get createStackNavigator() {
+      return _require(_dependencyMap[0]).default;
+    },
+
+    get createUncontainedStackNavigator() {
+      return _require(_dependencyMap[1]).default;
+    },
+
+    get Header() {
+      return _require(_dependencyMap[2]).default;
+    },
+
+    get HeaderBackButton() {
+      return _require(_dependencyMap[3]).default;
+    },
+
+    get HeaderTitle() {
+      return _require(_dependencyMap[4]).default;
+    },
+
+    get HeaderStyleInterpolator() {
+      return _require(_dependencyMap[5]).default;
+    },
+
+    get StackView() {
+      return _require(_dependencyMap[6]).default;
+    },
+
+    get StackViewCard() {
+      return _require(_dependencyMap[7]).default;
+    },
+
+    get StackViewLayout() {
+      return _require(_dependencyMap[8]).default;
+    },
+
+    get StackViewStyleInterpolator() {
+      return _require(_dependencyMap[9]).default;
+    },
+
+    get StackViewTransitionConfigs() {
+      return _require(_dependencyMap[10]).default;
+    },
+
+    get createPointerEventsContainer() {
+      return _require(_dependencyMap[11]).default;
+    },
+
+    get Transitioner() {
+      return _require(_dependencyMap[12]).default;
+    },
+
+    get ScenesReducer() {
+      return _require(_dependencyMap[13]).default;
+    }
+
+  };
+});

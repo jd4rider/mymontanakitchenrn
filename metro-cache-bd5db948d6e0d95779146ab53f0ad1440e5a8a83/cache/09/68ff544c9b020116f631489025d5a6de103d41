@@ -1,0 +1,30 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react = _require(_dependencyMap[0]);
+
+  var _react2 = babelHelpers.interopRequireDefault(_react);
+
+  var _propTypes = _require(_dependencyMap[1]);
+
+  var _propTypes2 = babelHelpers.interopRequireDefault(_propTypes);
+
+  var _Icon = _require(_dependencyMap[2]);
+
+  var _Icon2 = babelHelpers.interopRequireDefault(_Icon);
+
+  var NavButton = function NavButton(props) {
+    var icon = props.icon,
+        attributes = babelHelpers.objectWithoutProperties(props, ["icon"]);
+    return _react2.default.createElement(_Icon2.default, babelHelpers.extends({}, attributes, {
+      name: icon
+    }));
+  };
+
+  NavButton.propTypes = {
+    icon: _propTypes2.default.string
+  };
+  exports.default = NavButton;
+});
