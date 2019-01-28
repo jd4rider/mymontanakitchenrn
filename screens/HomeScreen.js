@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Button, Header } from 'react-native-elements'
 import { WebBrowser } from 'expo';
+import CustomMenu from "../components/CustomMenu"
 
 import { MonoText } from '../components/StyledText';
 
@@ -29,11 +30,15 @@ export default class HomeScreen extends React.Component {
           <Header 
               statusBarProps={{ barStyle: 'light-content' }}
               backgroundColor="#9E364A"
-              leftComponent={{ icon: 'menu', color: '#fff' }}
+              //leftComponent={{ icon: 'menu', color: '#fff' }}
+              leftComponent={<CustomMenu />}
               centerComponent={{ text: 'My Montana Kitchen', style: { color: '#fff' } }}
+              //centerComponent={<CustomMenu />}
               outerContainerStyles={{ height: 90 }}
               rightComponent={{ icon: 'settings', color: '#fff' }}
-            />
+            >
+            <CustomMenu />
+          </Header>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
             <Image
@@ -45,13 +50,13 @@ export default class HomeScreen extends React.Component {
               style={styles.welcomeImage}
             />
           </View>
-
             <View style={styles.buttoncont}>
             <Button 
               raised
               title="Recipes"
               backgroundColor="#9E364A"
               buttonStyle={styles.button}
+              onPress={this._handleRecipePress}
               rounded
             />
             <Text>{"     "}</Text>
@@ -60,6 +65,7 @@ export default class HomeScreen extends React.Component {
               title="Videos"
               backgroundColor="#82665C"
               buttonStyle={styles.button}
+              onPress={this._handleVideoPress}
               rounded
             />
             </View>
@@ -129,6 +135,19 @@ export default class HomeScreen extends React.Component {
       'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
     );
   };
+
+  _handleRecipePress = () => {
+    WebBrowser.openBrowserAsync(
+      'https://mymontanakitchen.com/recipes/'
+    );
+  };
+  
+  _handleVideoPress = () => {
+    WebBrowser.openBrowserAsync(
+      'https://mymontanakitchen.com/video-content-page/'
+    );
+  };
+  //https://mymontanakitchen.com/video-content-page/
 }
 
 const styles = StyleSheet.create({
